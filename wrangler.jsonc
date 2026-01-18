@@ -1,0 +1,33 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "newvisas-cloud",
+    "main": "src/index.tsx",
+    "compatibility_date": "2026-01-15",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
+    // D1 数据库绑定
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "newvisas-cloud-db",
+            "database_id": "e17a37ff-c11b-45d5-a04d-7b994b92ac5d"
+        }
+    ],
+    // R2 存储桶绑定
+    "r2_buckets": [
+        {
+            "binding": "BUCKET",
+            "bucket_name": "newvisas-bucket"
+        }
+    ],
+    // 环境变量
+    "vars": {
+        "JWT_SECRET": "3n9rqakkugnzr4brec184sdcmq1pcrcx"
+    },
+    // 静态资源 - 使用 static 目录，映射到 /static/* 路径
+    "assets": {
+        "directory": "./static",
+        "binding": "ASSETS"
+    }
+}

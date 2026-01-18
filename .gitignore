@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Wrangler/Cloudflare
+.wrangler/
+.dev.vars
+
+# Drizzle/Database
+d1-backup.sql
+*.sqlite
+*.sqlite-journal
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Build/Logs
+dist/
+*.log
