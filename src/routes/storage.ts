@@ -17,7 +17,31 @@ app.get('/*', async (c) => {
     const key = path.startsWith('/') ? path.slice(1) : path;
 
     // 从 R2 获取文件
-    const object = await c.env.BUCKET.get(key);
+    let object = await c.env.BUCKET.get(key);
+
+    // 如果文件不存在，尝试不同的扩展名大小写组合
+    if (!object) {
+        // 获取文件扩展名
+        const lastDotIndex = key.lastIndexOf('.');
+        if (lastDotIndex !== -1) {
+            const basePath = key.substring(0, lastDotIndex);
+            const extension = key.substring(lastDotIndex + 1);
+
+            // 尝试不同的扩展名大小写组合
+            const variations = [
+                extension.toLowerCase(),  // 全小写
+                extension.toUpperCase(),  // 全大写
+            ].filter(ext => ext !== extension); // 过滤掉原始的扩展名(已经尝试过)
+
+            for (const ext of variations) {
+                const alternativeKey = `${basePath}.${ext}`;
+                object = await c.env.BUCKET.get(alternativeKey);
+                if (object) {
+                    break;
+                }
+            }
+        }
+    }
 
     if (!object) {
         return c.notFound();

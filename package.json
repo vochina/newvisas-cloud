@@ -13,12 +13,14 @@
     },
     "dependencies": {
         "@hono/zod-validator": "^0.7.6",
+        "bcryptjs": "^3.0.3",
         "drizzle-orm": "^0.38.0",
         "hono": "^4.6.0",
         "zod": "^4.3.5"
     },
     "devDependencies": {
         "@cloudflare/workers-types": "^4.20241218.0",
+        "@types/bcryptjs": "^3.0.0",
         "drizzle-kit": "^0.30.0",
         "typescript": "^5.7.0",
         "wrangler": "^4.0.0"
