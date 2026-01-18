@@ -11,7 +11,7 @@
         {
             "binding": "DB",
             "database_name": "newvisas-cloud-db",
-            "database_id": "e17a37ff-c11b-45d5-a04d-7b994b92ac5d"
+            "database_id": "f613be3e-e4ba-40da-a9f1-c93345cb211e"
         }
     ],
     // R2 存储桶绑定
