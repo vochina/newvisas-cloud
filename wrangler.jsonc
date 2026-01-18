@@ -21,13 +21,24 @@
             "bucket_name": "newvisas-bucket"
         }
     ],
-    // 环境变量
-    "vars": {
-        "JWT_SECRET": "3n9rqakkugnzr4brec184sdcmq1pcrcx"
-    },
     // 静态资源 - 使用 static 目录，映射到 /static/* 路径
     "assets": {
         "directory": "./static",
         "binding": "ASSETS"
+    },
+    "observability": {
+        "enabled": false,
+        "head_sampling_rate": 1,
+        "logs": {
+            "enabled": true,
+            "head_sampling_rate": 1,
+            "persist": true,
+            "invocation_logs": true
+        },
+        "traces": {
+            "enabled": false,
+            "persist": true,
+            "head_sampling_rate": 1
+        }
     }
 }
