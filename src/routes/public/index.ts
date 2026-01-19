@@ -12,6 +12,7 @@ import eventRoutes from './event';
 import aboutRoutes from './about';
 import contactRoutes from './contact';
 import assessmentRoutes from './assessment';
+import propertyRoutes from './property';
 
 const app = new Hono<AppEnv>();
 
@@ -25,5 +26,6 @@ app.route('/', eventRoutes);
 app.route('/', aboutRoutes);
 app.route('/', contactRoutes);
 app.route('/', assessmentRoutes);
+app.route('/', propertyRoutes);
 
 export default app;

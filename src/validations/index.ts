@@ -76,6 +76,30 @@ export const teamSchema = z.object({
 
 export type TeamInput = z.infer<typeof teamSchema>;
 
+// ==================== 房产管理 ====================
+
+// 海外房产表单验证
+export const propertySchema = z.object({
+    title: z.string().min(1, '请输入房产标题').max(200, '标题不能超过200字'),
+    zhouId: z.coerce.number().optional(),
+    guojiaId: z.coerce.number().min(1, '请选择国家'),
+    city: z.string().max(100, '城市名不能超过100字').optional(),
+    features: z.string().max(200, '特色不能超过200字').optional(),
+    keywords: z.string().max(200, '关键词不能超过200字').optional(),
+    description: z.string().max(500, '描述不能超过500字').optional(),
+    content: z.string().optional(),
+    pic: z.string().optional(),
+    totalPrice: z.string().max(100).optional(),
+    unitPrice: z.string().max(100).optional(),
+    category: z.string().max(50).optional(),    // 房产类别
+    ownership: z.string().max(50).optional(),   // 产权
+    layout: z.string().max(100).optional(),     // 户型
+    decoration: z.string().max(50).optional(),  // 装修
+    status: z.coerce.number().default(1),       // 状态
+});
+
+export type PropertyInput = z.infer<typeof propertySchema>;
+
 // ==================== 评估申请 (前台) ====================
 
 // 移民评估表单验证

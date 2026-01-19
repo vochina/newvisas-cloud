@@ -1,7 +1,7 @@
 // Public News Routes - 新闻资讯
 import { Hono } from 'hono';
 import { desc, eq, asc, count } from 'drizzle-orm';
-import { info, newsClass } from '../../db/schema';
+import { info, newsClass, link } from '../../db/schema';
 import { Layout } from '../../components/Layout';
 import { Pagination } from '../../components/Pagination';
 import type { AppEnv } from '../../types';
@@ -41,8 +41,11 @@ app.get('/news', async (c) => {
 
     const currentCategory = cid ? categories.find(c => c.id === parseInt(cid)) : null;
 
+    // 获取友情链接
+    const friendshipLinks = await db.select().from(link);
+
     return c.html(
-        <Layout title={currentCategory ? currentCategory.name : '新闻资讯'}>
+        <Layout title={currentCategory ? currentCategory.name : '新闻资讯'} links={friendshipLinks}>
             <div class="in_left">
                 <div class="pro_title">
                     {currentCategory ? currentCategory.name : '全部新闻'}
@@ -111,8 +114,11 @@ app.get('/news/:id', async (c) => {
         .from(newsClass)
         .orderBy(asc(newsClass.sortOrder));
 
+    // 获取友情链接
+    const friendshipLinks = await db.select().from(link);
+
     return c.html(
-        <Layout title={article.title || '新闻详情'}>
+        <Layout title={article.title || '新闻详情'} links={friendshipLinks}>
             <div class="in_left">
                 <div class="news_title">{article.title}</div>
                 <div class="news_time">

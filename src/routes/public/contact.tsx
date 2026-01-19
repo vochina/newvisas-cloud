@@ -1,5 +1,6 @@
 // Public Contact Route - 联系我们
 import { Hono } from 'hono';
+import { link } from '../../db/schema';
 import { Layout } from '../../components/Layout';
 import type { AppEnv } from '../../types';
 
@@ -7,8 +8,11 @@ const app = new Hono<AppEnv>();
 
 // 联系我们
 app.get('/contact', async (c) => {
+    const db = c.get('db');
+    const friendshipLinks = await db.select().from(link);
+
     return c.html(
-        <Layout title="联系我们">
+        <Layout title="联系我们" links={friendshipLinks}>
             <div class="in_left">
                 <div class="pro_title">联系我们</div>
 

@@ -1,7 +1,7 @@
 // Public Team Routes - 专家团队
 import { Hono } from 'hono';
 import { eq, asc } from 'drizzle-orm';
-import { team } from '../../db/schema';
+import { team, link } from '../../db/schema';
 import { Layout } from '../../components/Layout';
 import type { AppEnv } from '../../types';
 

@@ -1,5 +1,6 @@
 // Public About Route - 关于我们
 import { Hono } from 'hono';
+import { link } from '../../db/schema';
 import { Layout } from '../../components/Layout';
 import type { AppEnv } from '../../types';
 
@@ -7,8 +8,11 @@ const app = new Hono<AppEnv>();
 
 // 关于我们
 app.get('/about', async (c) => {
+    const db = c.get('db');
+    const friendshipLinks = await db.select().from(link);
+
     return c.html(
-        <Layout title="关于我们">
+        <Layout title="关于我们" links={friendshipLinks}>
             <div class="in_left">
                 <div class="pro_title">关于我们</div>
 
@@ -19,7 +23,7 @@ app.get('/about', async (c) => {
 
                     <div class="in_nav_text" style="margin-top:20px">
                         <p style="line-height:28px;text-indent:2em">
-                            NewVisas 是一家专业的移民签证服务机构，致力于为客户提供高品质的移民咨询和签证服务。
+                            鑫嘉园 是一家专业的移民签证服务机构，致力于为客户提供高品质的移民咨询和签证服务。
                             我们拥有多年的行业经验和专业的顾问团队，成功帮助数千个家庭实现了海外移民的梦想。
                         </p>
                         <p style="line-height:28px;text-indent:2em;margin-top:15px">

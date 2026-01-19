@@ -186,12 +186,3 @@ export const user = sqliteTable('mre_user', {
     createdAt: text('mre_time'),
     loginCount: integer('mre_num').default(0),
 });
-
-// QQ访客记录表
-export const qqhaoma = sqliteTable('mre_qqhaoma', {
-    id: integer('id').primaryKey({ autoIncrement: true }),
-    qqNum: text('qqnum'),
-    ip: text('qqip'),
-    visitTime: text('qqtime'),
-    url: text('qqurl'),
-});

@@ -1,6 +1,6 @@
 // Public Assessment Routes - 移民评估
 import { Hono } from 'hono';
-import { pinggu } from '../../db/schema';
+import { pinggu, link } from '../../db/schema';
 import { Layout } from '../../components/Layout';
 import { assessmentSchema } from '../../validations';
 import type { AppEnv } from '../../types';
@@ -9,8 +9,11 @@ const app = new Hono<AppEnv>();
 
 // 移民评估
 app.get('/assessment', async (c) => {
+    const db = c.get('db');
+    const friendshipLinks = await db.select().from(link);
+
     return c.html(
-        <Layout title="免费评估">
+        <Layout title="免费评估" links={friendshipLinks}>
             <div class="in_left">
                 <div class="pro_title">免费移民评估</div>
 
@@ -108,8 +111,11 @@ app.post('/assessment', async (c) => {
     });
 
     if (!result.success) {
+        const db = c.get('db');
+        const friendshipLinks = await db.select().from(link);
+
         return c.html(
-            <Layout title="验证错误">
+            <Layout title="验证错误" links={friendshipLinks}>
                 <div class="in_left">
                     <div class="pro_title">提交失败</div>
                     <div style="padding:50px;text-align:center">
@@ -142,8 +148,10 @@ app.post('/assessment', async (c) => {
         status: 0,
     });
 
+    const friendshipLinks = await db.select().from(link);
+
     return c.html(
-        <Layout title="提交成功">
+        <Layout title="提交成功" links={friendshipLinks}>
             <div class="in_left">
                 <div class="pro_title">提交成功</div>
                 <div style="padding:50px;text-align:center">

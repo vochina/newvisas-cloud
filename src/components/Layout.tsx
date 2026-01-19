@@ -2,16 +2,23 @@
 
 import type { FC, PropsWithChildren } from 'hono/jsx';
 
+type LinkItem = {
+    id: number;
+    title: string | null;
+    url: string | null;
+};
+
 type LayoutProps = PropsWithChildren<{
     title: string;
+    links?: LinkItem[];
 }>;
 
-export const Layout: FC<LayoutProps> = ({ title, children }) => (
+export const Layout: FC<LayoutProps> = ({ title, children, links = [] }) => (
     <html lang="zh-CN">
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>{title} - NewVisas 移民签证服务</title>
+            <title>{title} - 鑫嘉园 移民签证服务</title>
             <link rel="stylesheet" href="/static/css/style.css" />
         </head>
         <body>
@@ -19,7 +26,7 @@ export const Layout: FC<LayoutProps> = ({ title, children }) => (
             <div class="header">
                 <div class="header_logo">
                     <a href="/">
-                        <img src="/image/logo.png" alt="NewVisas" />
+                        <img src="/image/logo.png" alt="鑫嘉园" />
                     </a>
                 </div>
                 <div class="header_right">
@@ -46,6 +53,12 @@ export const Layout: FC<LayoutProps> = ({ title, children }) => (
                             </a>
                         </li>
                         <li>
+                            <a href="/news">
+                                <b>新闻资讯</b><br />
+                                <span>News</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/program">
                                 <b>移民项目</b><br />
                                 <span>Programs</span>
@@ -58,9 +71,15 @@ export const Layout: FC<LayoutProps> = ({ title, children }) => (
                             </ul>
                         </li>
                         <li>
-                            <a href="/news">
-                                <b>新闻资讯</b><br />
-                                <span>News</span>
+                            <a href="/property">
+                                <b>海外房产</b><br />
+                                <span>Property</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/events">
+                                <b>活动讲座</b><br />
+                                <span>Events</span>
                             </a>
                         </li>
                         <li>
@@ -73,12 +92,6 @@ export const Layout: FC<LayoutProps> = ({ title, children }) => (
                             <a href="/team">
                                 <b>专家团队</b><br />
                                 <span>Team</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/events">
-                                <b>活动讲座</b><br />
-                                <span>Events</span>
                             </a>
                         </li>
                         <li>
@@ -102,15 +115,18 @@ export const Layout: FC<LayoutProps> = ({ title, children }) => (
             </div>
 
             {/* 友情链接 */}
-            <div class="index_link">
-                <div class="index_link_in">
-                    友情链接：
-                    <a href="#">移民资讯</a>
-                    <a href="#">签证服务</a>
-                    <a href="#">海外房产</a>
-                    <a href="#">出国留学</a>
+            {links.length > 0 && (
+                <div class="index_link">
+                    <div class="index_link_in">
+                        友情链接：
+                        {links.map(link => (
+                            <a href={link.url || '#'} target="_blank" rel="noopener noreferrer">
+                                {link.title}
+                            </a>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* 底部 */}
             <div class="bottom">
@@ -123,6 +139,7 @@ export const Layout: FC<LayoutProps> = ({ title, children }) => (
                             <a href="/case">成功案例</a>
                             <a href="/team">专家团队</a>
                             <a href="/events">活动讲座</a>
+                            <a href="/property">海外房产</a>
                             <a href="/about">关于我们</a>
                             <a href="/contact">联系我们</a>
                         </div>
@@ -130,7 +147,7 @@ export const Layout: FC<LayoutProps> = ({ title, children }) => (
                             重庆鑫嘉园出入境服务有限公司<br />
                             地址：重庆渝中区解放碑邹容路68号大都会东方广场37楼<br />
                             电话：023-89698386 &nbsp; 邮箱：service@mail.newvisas.com<br />
-                            © 2013-{new Date().getFullYear()} NewVisas. All rights reserved.
+                            © 2013-{new Date().getFullYear()} 鑫嘉园. All rights reserved.
                         </p>
                     </div>
                     <div class="bottom_right">

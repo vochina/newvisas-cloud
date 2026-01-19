@@ -1,7 +1,7 @@
 // Public Program Routes - 移民项目
 import { Hono } from 'hono';
 import { desc, eq, asc, count } from 'drizzle-orm';
-import { guojia, xm } from '../../db/schema';
+import { guojia, xm, link } from '../../db/schema';
 import { Layout } from '../../components/Layout';
 import { Pagination } from '../../components/Pagination';
 import type { AppEnv } from '../../types';

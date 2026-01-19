@@ -1,7 +1,7 @@
 // Public Home Route - 首页
 import { Hono } from 'hono';
 import { desc, eq, asc } from 'drizzle-orm';
-import { guojia, xm, info, ad, jiangzuo } from '../../db/schema';
+import { guojia, xm, info, ad, jiangzuo, link } from '../../db/schema';
 import { Layout } from '../../components/Layout';
 import type { AppEnv } from '../../types';
 
@@ -23,7 +23,7 @@ app.get('/', async (c) => {
         .select()
         .from(xm)
         .orderBy(desc(xm.createdAt))
-        .limit(6);
+        .limit(5);
 
     // 获取国家列表
     const countries = await db
@@ -47,12 +47,21 @@ app.get('/', async (c) => {
         .orderBy(desc(jiangzuo.createdAt))
         .limit(3);
 
+    // 获取友情链接
+    const friendshipLinks = await db
+        .select()
+        .from(link);
+
     return c.html(
-        <Layout title="首页">
+        <Layout title="首页" links={friendshipLinks}>
             {/* 通栏区域：左侧国家导航 + 中间轮播图 + 右侧评估 */}
             <div class="index_tonglan">
                 {/* 左侧国家导航 */}
                 <div class="index_tonglan_l">
+                    <div style="background:#5D4117;color:#fff;text-align:center;padding:15px 10px;line-height:24px">
+                        <div style="font-size:16px;font-weight:bold;margin-bottom:5px">移民国家</div>
+                        <div style="font-size:12px;opacity:0.9">Countries</div>
+                    </div>
                     <ul>
                         {countries.map(country => (
                             <li>
@@ -79,7 +88,7 @@ app.get('/', async (c) => {
                                 ))
                                 :
                                 <li class="cur">
-                                    <img src="/image/topbg.jpg" alt="NewVisas" />
+                                    <img src="/image/topbg.jpg" alt="鑫嘉园" />
                                 </li>
                             }
                         </ul>

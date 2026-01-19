@@ -16,7 +16,7 @@ app.get('/login', (c) => {
             <head>
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>后台登录 - NewVisas</title>
+                <title>后台登录 - 鑫嘉园</title>
                 <style>{`
           * { box-sizing: border-box; margin: 0; padding: 0; }
           body { 

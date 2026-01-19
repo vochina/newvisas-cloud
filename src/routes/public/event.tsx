@@ -1,7 +1,7 @@
 // Public Event Routes - 活动讲座
 import { Hono } from 'hono';
 import { desc, eq, count } from 'drizzle-orm';
-import { jiangzuo } from '../../db/schema';
+import { jiangzuo, link } from '../../db/schema';
 import { Layout } from '../../components/Layout';
 import { Pagination } from '../../components/Pagination';
 import type { AppEnv } from '../../types';

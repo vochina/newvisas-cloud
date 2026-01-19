@@ -12,7 +12,12 @@ import teamRoutes from './team';
 import eventRoutes from './event';
 import assessmentRoutes from './assessment';
 import adRoutes from './ad';
+import countryRoutes from './country';
+import categoryRoutes from './category';
+import propertyRoutes from './property';
 import uploadPageRoutes from './upload-page';
+import userRoutes from './user';
+import linkRoutes from './link';
 import uploadRoutes from '../upload';
 
 const app = new Hono<AppEnv>();
@@ -33,7 +38,12 @@ app.route('/', teamRoutes);
 app.route('/', eventRoutes);
 app.route('/', assessmentRoutes);
 app.route('/', adRoutes);
+app.route('/', countryRoutes);
+app.route('/', categoryRoutes);
+app.route('/', propertyRoutes);
 app.route('/', uploadPageRoutes);
+app.route('/', userRoutes);
+app.route('/', linkRoutes);
 app.route('/', uploadRoutes);
 
 export default app;

@@ -215,7 +215,7 @@ a:hover {
 
 .nav_left li {
   float: left;
-  width: 130px;
+  width: 110px;
   height: 60px;
   text-align: center;
   line-height: 20px;
@@ -225,7 +225,7 @@ a:hover {
   display: block;
   width: 100%;
   height: 100%;
-  padding-top: 8px;
+  padding-top: 12px;
   box-sizing: border-box;
 }
 
@@ -257,7 +257,7 @@ a:hover {
 .nav_left li ul {
   position: absolute;
   visibility: hidden;
-  width: 130px;
+  width: 110px;
   background: #E7BE55;
   padding-top: 10px;
   z-index: 999;

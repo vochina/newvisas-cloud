@@ -13,7 +13,7 @@ export const AdminLayout: FC<AdminLayoutProps> = ({ title, username, children })
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>{title} - NewVisas 后台</title>
+            <title>{title} - 鑫嘉园 后台</title>
             {/* QuillJS CDN */}
             <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet" />
             <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
@@ -295,14 +295,27 @@ export const AdminLayout: FC<AdminLayoutProps> = ({ title, username, children })
                 {/* 侧边栏 */}
                 <aside class="sidebar">
                     <div class="sidebar-header">
-                        <h1>🌍 NewVisas</h1>
+                        <h1>🌍 鑫嘉园</h1>
                     </div>
                     <nav class="sidebar-menu">
                         <a href="/admin/dashboard" class="menu-item">
                             <span class="icon">📊</span>
                             控制面板
                         </a>
-                        <a href="/admin/news" class="menu-item">
+                        <a href="/admin/countries" class="menu-item">
+                            <span class="icon">🌎</span>
+                            国家管理
+                        </a>
+                        <a href="/admin/categories" class="menu-item">
+                            <span class="icon">📑</span>
+                            分类管理
+                        </a>
+                        <a href="/admin/properties" class="menu-item">
+                            <span class="icon">🏠</span>
+                            房产管理
+                        </a>
+                        <a href="/admin/news" class="menu-item"
+                        >
                             <span class="icon">📰</span>
                             新闻管理
                         </a>
@@ -329,6 +342,14 @@ export const AdminLayout: FC<AdminLayoutProps> = ({ title, username, children })
                         <a href="/admin/ads" class="menu-item">
                             <span class="icon">📣</span>
                             广告管理
+                        </a>
+                        <a href="/admin/links" class="menu-item">
+                            <span class="icon">🔗</span>
+                            友链管理
+                        </a>
+                        <a href="/admin/users" class="menu-item">
+                            <span class="icon">👤</span>
+                            用户管理
                         </a>
                     </nav>
                 </aside>
